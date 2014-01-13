@@ -19,6 +19,7 @@ group :test do
   gem 'libnotify', '0.8.0'
 end
 
+gem 'bcrypt-ruby', '3.1.2'
 gem 'sass-rails', '4.0.1'
 gem 'bootstrap-sass'
 gem 'uglifier', '2.1.1'
