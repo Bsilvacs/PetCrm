@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :replies, foreign_key: "in_reply_to_id", class_name: "Micropost"
   before_save { email.downcase! }
   before_create :create_remember_token
   
@@ -38,6 +39,10 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
+  end
+
+  def find_by_email(email)
+    where(email: email)
   end
 
   private
